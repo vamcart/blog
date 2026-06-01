@@ -9,7 +9,7 @@ return [
         'port' => '3306',
         'user' => 'root',
         'password' => 'tiger',
-        'db' => 'abelo',
+        'db' => 'blog',
     ],
     // use short_url (e.g http://domain.com/some-route will become /some-route)
     'short_url' => true
