@@ -1,6 +1,3 @@
-<?php
-// Converted from edit.html to Smarty template
-?>
 <!DOCTYPE html>
 <html>
     <head>
