@@ -35,7 +35,11 @@ class Blog extends Model
         // transform to array of models
         foreach ($result as $data) {
             $model = new Blog();
-            $model->_fill($data);
+            // Apply htmlspecialchars to every value in the array
+            $sanitizedResult = array_map(function($value) {
+                return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
+            }, $data);  
+            $model->_fill($sanitizedResult);
             $modelList[] = $model;
         }
 

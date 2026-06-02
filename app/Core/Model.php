@@ -172,8 +172,12 @@ class Model
         $result = $db->fetchAssociative();
         // assoc the object to this model properties
         if ($result) {
+            // Apply htmlspecialchars to every value in the array
+            $sanitizedResult = array_map(function($value) {
+                return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
+            }, $result);            
             $model = new static();
-            $model->_fill($result);
+            $model->_fill($sanitizedResult);
             return $model;
         }
         return;

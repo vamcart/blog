@@ -13,7 +13,7 @@
             <h1>Вход</h1>
 
         <div class="panel">
-                <a class="btn" href="{url path='/'}">Вернуться к списку задач</a>
+                <a class="btn" href="{url path='/'}">Вернуться к списку блогов</a>
         </div>
 
         {if $session->hasFlash('errors')}

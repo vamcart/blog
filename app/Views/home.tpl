@@ -12,7 +12,7 @@
         <div class="container">
             <h1><a href="./">{config key='name'}</a></h1>
             <div class="panel">
-                <a class="btn" href="{route name='blog.create'}">Добавить задачу</a>
+                <a class="btn" href="{route name='blog.create'}">Добавить блог</a>
                 {if $isAdmin}
                 <a class="btn text-right" href="{route name='user.logoff'}">Выход</a>
                 {else}
@@ -37,9 +37,9 @@
 {foreach $blogs as $blog_list}
     <tr>
       <th scope="row">{$blog_list.id}</th>
-      <td>{$blog_list.name|escape}</td>
+      <td>{$blog_list.name}</td>
       <td>{$blog_list.text}</td>
-      <td>{$blog_list.description|escape}</td>
+      <td>{$blog_list.description}</td>
       <td>{$blog_list.status}</td>
       <td>{if $blog_list.edited == 1}
       <div class="text-success">Отредактировано администратором</div>
