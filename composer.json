@@ -10,7 +10,8 @@
     ],
     "require": {
         "php": ">=5.6.4",
-        "voku/pagination": "^4.0"
+        "voku/pagination": "^4.0",
+        "smarty/smarty": "^5.8"
     },
     "autoload": {
         "psr-4": {
