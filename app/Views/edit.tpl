@@ -27,10 +27,18 @@
 
            {if $request->query('saved')}
                 <p class="msg msg-success">Успешно сохранено!</p>
+                <div class="panel">
+                    <a class="btn" href="{url path='/'}">Вернуться к списку блогов</a>
+                </div>
             {/if}
 
+           {if $blog->id}
             <form action="{route name='blog.save' id=$blog->id}" method="post">
                 <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="edited" value="1">
+            {else}
+            <form action="{route name='blog.create'}" method="post">
+            {/if}            
                 <div class="form-group">
                     <label>Название</label>
                     <input type="text" name="name" value="{$blog->name}" required>
