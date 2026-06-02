@@ -8,6 +8,8 @@ CREATE TABLE `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,   
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -25,6 +27,8 @@ CREATE TABLE `blogs` (
   `status` varchar(20) NOT NULL DEFAULT 'Ожидает проверки',
   `edited` int(2) NOT NULL DEFAULT '0',
   `viewed` int(11) NOT NULL DEFAULT '0',
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,   
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
