@@ -8,11 +8,11 @@ use App\Core\Http\Response;
 use App\Core\Session;
 use App\Core\Utilities\FunctionInjector;
 use App\Core\View;
-use App\Models\Todo;
+use App\Models\Blog;
 use voku\helper\Paginator;
 
 
-class TodoController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display homepage
@@ -24,33 +24,33 @@ class TodoController extends Controller
         $pages = new Paginator(3, 'page');
 
         // set the total records, calling a method to get the number of records from a model
-        $pages->set_total(Todo::count_all());
+        $pages->set_total(Blog::count_all());
 
-        $todoList = Todo::all($sort, $order, $page, $pages->get_limit());
+        $blogList = Blog::all($sort, $order, $page, $pages->get_limit());
 
-        foreach ($todoList as $todo) {
-            $todos[] = $todo->toArray();
+        foreach ($blogList as $blog) {
+            $blogs[] = $blog->toArray();
         }
         
-        $view_data = compact('todos');
+        $view_data = compact('blogs');
         $view_merge = array_merge(array('pagination' => $pages->page_links()), $view_data);
         
         return view('home', $view_merge);
     }
 
     /**
-     * Delete a todo
+     * Delete a blog
      * @param null|int $id
      * @return string
      */
     public function delete(Session $session, $id = null)
     {
-        $todo = Todo::delete($id);
+        $blog = Blog::delete($id);
 
         $errors[] = 'Запись удалена!';
         session()->setFlash('errors', $errors);
 
-        return view('home', compact('todo'));
+        return view('home', compact('blog'));
     }
 
     /**
@@ -62,16 +62,16 @@ class TodoController extends Controller
      */
     public function edit(Session $session, $id = null)
     {
-        $todo = Todo::find($id);
-        if (!$todo) {
+        $blog = Blog::find($id);
+        if (!$blog) {
             return response_404();
         }
 
-        return view('edit', compact('todo'));
+        return view('edit', compact('blog'));
     }
 
     /**
-     * Update a todo
+     * Update a blog
      * @param Request $request
      * @param null|int $id
      * @return \App\Core\Http\Response
@@ -79,8 +79,8 @@ class TodoController extends Controller
     public function save(Request $request, $id = null)
     {
         // get origin
-        $todo = Todo::find($id);
-        if (!$todo) {
+        $blog = Blog::find($id);
+        if (!$blog) {
             return response_404();
         }
 
@@ -95,15 +95,15 @@ class TodoController extends Controller
         }
 
         // fill new data to model
-        $todo->fill($request->input());
-        $todo->save();
+        $blog->fill($request->input());
+        $blog->save();
         
         // back
-        return to_route('todo.edit', ['id' => $todo->id, '+query' => ['saved' => 1]]);
+        return to_route('blog.edit', ['id' => $blog->id, '+query' => ['saved' => 1]]);
     }
 
     /**
-     * Create a Todo
+     * Create a Blog
      * @param Request $request
      * @return Response
      */
@@ -116,9 +116,9 @@ class TodoController extends Controller
             return $validation;
         }
         // save
-        $todo = new Todo($request->input());
-        $todo->save();
-        return to_route('todo.edit', ['id' => $todo->id, '+query' => ['saved' => 1]]);
+        $blog = new Blog($request->input());
+        $blog->save();
+        return to_route('blog.edit', ['id' => $blog->id, '+query' => ['saved' => 1]]);
     }
 
     /**
@@ -145,9 +145,9 @@ class TodoController extends Controller
             // save old input
             session()->setFlash('old', $request->input());
             if ($id) {
-                return to_route('todo.edit', ['id' => $id]);
+                return to_route('blog.edit', ['id' => $id]);
             } else {
-                return to_route('todo.create');
+                return to_route('blog.create');
             }
         }
         // else

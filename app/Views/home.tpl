@@ -12,7 +12,7 @@
         <div class="container">
             <h1><a href="./">{config key='name'}</a></h1>
             <div class="panel">
-                <a class="btn" href="{route name='todo.create'}">Добавить задачу</a>
+                <a class="btn" href="{route name='blog.create'}">Добавить задачу</a>
                 {if $isAdmin}
                 <a class="btn text-right" href="{route name='user.logoff'}">Выход</a>
                 {else}
@@ -34,17 +34,17 @@
     </tr>
   </thead>
   <tbody>
-{foreach $todos as $todo_list}
+{foreach $blogs as $blog_list}
     <tr>
-      <th scope="row">{$todo_list.id}</th>
-      <td>{$todo_list.name|escape}</td>
-      <td>{$todo_list.email}</td>
-      <td>{$todo_list.description|escape}</td>
-      <td>{$todo_list.status}</td>
-      <td>{if $todo_list.edited == 1}
+      <th scope="row">{$blog_list.id}</th>
+      <td>{$blog_list.name|escape}</td>
+      <td>{$blog_list.email}</td>
+      <td>{$blog_list.description|escape}</td>
+      <td>{$blog_list.status}</td>
+      <td>{if $blog_list.edited == 1}
       <div class="text-success">Отредактировано администратором</div>
       {/if}{if isAdmin}
-      <a href="{route name='todo.edit' id=$todo_list.id}">Редактировать</a>
+      <a href="{route name='blog.edit' id=$blog_list.id}">Редактировать</a>
       {/if}</td>
     </tr>
 {/foreach}

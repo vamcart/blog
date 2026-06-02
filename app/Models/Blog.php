@@ -4,12 +4,12 @@ namespace App\Models;
 
 use App\Core\Model;
 
-class Todo extends Model
+class Blog extends Model
 {
     /**
      * @var string table associated with this model
      */
-    protected $table = 'todos';
+    protected $table = 'blogs';
 
     /**
      * @var array list of safe properties
@@ -18,7 +18,7 @@ class Todo extends Model
 
     /**
      * Get all records from db
-     * @return array An array of Todo
+     * @return array An array of Blog
      */
     public static function all($sort, $order, $page, $limit)
     { 
@@ -27,14 +27,14 @@ class Todo extends Model
         $order = white_list($order, 'order');
 
         $db = resolve('db');
-        $db->prepare('select * from todos order by ' . $sort . ' ' . $order . $limit);
+        $db->prepare('select * from blogs order by ' . $sort . ' ' . $order . $limit);
 
         $db->execute();
         $result = $db->fetchAllAssociative();
         $modelList = [];
         // transform to array of models
         foreach ($result as $data) {
-            $model = new Todo();
+            $model = new Blog();
             $model->_fill($data);
             $modelList[] = $model;
         }
@@ -45,7 +45,7 @@ class Todo extends Model
     public static function count_all()
     {
     	$db = resolve('db');
-    	$db->prepare("select * from todos");
+    	$db->prepare("select * from blogs");
     	$db->execute();
     	$count = $db->countRows();
 

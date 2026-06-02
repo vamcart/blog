@@ -4,6 +4,6 @@ namespace App\Models;
 
 use App\Core\Model;
 
-class Todo extends Model
+class User extends Model
 {
 }

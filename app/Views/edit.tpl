@@ -11,8 +11,8 @@
     </head>
     <body>
         <div class="container">
-            {if $todo->id}
-                <h1>Редактировать задачу: {$todo->name}</h1>
+            {if $blog->id}
+                <h1>Редактировать задачу: {$blog->name}</h1>
             {else}
                 <h1>Создать новую задачу</h1>
             {/if}
@@ -29,26 +29,26 @@
                 <p class="msg msg-success">Успешно сохранено!</p>
             {/if}
 
-            <form action="{route name='todo.save' id=$todo->id}" method="post">
+            <form action="{route name='blog.save' id=$blog->id}" method="post">
                 <input type="hidden" name="_method" value="PUT">
                 <div class="form-group">
                     <label>Имя</label>
-                    <input type="text" name="name" value="{$todo->name}" required>
+                    <input type="text" name="name" value="{$blog->name}" required>
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="email" value="{$todo->email}" required>
+                    <input type="email" name="email" value="{$blog->email}" required>
                 </div>
                 <div class="form-group">
                     <label>Описание</label>
-                    <textarea name="description">{$todo->description}</textarea>
+                    <textarea name="description">{$blog->description}</textarea>
                 </div>
-                {if $todo->id}
+                {if $blog->id}
                     <div class="form-group">
                         <label>Статус</label>
                         <select name="status">
                             {foreach ['Ожидает проверки', 'Выполняется', 'Выполнено'] as $status}
-                                <option value="{$status}"{if $status == $todo->status} selected{/if}>{$status}</option>
+                                <option value="{$status}"{if $status == $blog->status} selected{/if}>{$status}</option>
                             {/foreach}
                         </select>
                     </div>

@@ -29,8 +29,8 @@ class UserController extends Controller
     public function save(Request $request, $id = null)
     {
         // get origin
-        $todo = Todo::find($id);
-        if (!$todo) {
+        $blog = Blog::find($id);
+        if (!$blog) {
             return response_404();
         }
 
@@ -41,10 +41,10 @@ class UserController extends Controller
         }
 
         // fill new data to model
-        $todo->fill($request->input());
-        $todo->save();
+        $blog->fill($request->input());
+        $blog->save();
         // back
-        return to_route('user.auth', ['id' => $todo->id, '+query' => ['saved' => 1]]);
+        return to_route('user.auth', ['id' => $blog->id, '+query' => ['saved' => 1]]);
     }    
 
     /**

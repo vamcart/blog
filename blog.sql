@@ -3,8 +3,8 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-DROP TABLE IF EXISTS `todos`;
-CREATE TABLE `todos` (
+DROP TABLE IF EXISTS `blogs`;
+CREATE TABLE `blogs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE `todos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `todos` (`id`, `name`, `email`, `description`, `status`, `edited`) VALUES
+INSERT INTO `blogs` (`id`, `name`, `email`, `description`, `status`, `edited`) VALUES
 (1,	'admin',	'vam@test.com',	'Описание задачи',	'Выполнено',	0),
 (2,	'user',	'vam1@test.com',	'Описание задачи 1',	'Выполнено',	1),
 (3,	'admin2',	'vam2@test.com',	'Описание задачи 2',	'Выполняется',	0),
