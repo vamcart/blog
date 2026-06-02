@@ -38,7 +38,7 @@
 {foreach $blogs as $blog_list}
     <tr>
       <th scope="row">{$blog_list.id}</th>
-      <td>{$blog_list.name}</td>
+      <td><a href="{route name='blog.view' id=$blog_list.id}">{$blog_list.name}</a></td>
       <td>{$blog_list.text}</td>
       <td>{$blog_list.description}</td>
       <td>{$blog_list.status}</td>

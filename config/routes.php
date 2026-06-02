@@ -18,6 +18,8 @@ $router->get('/blog/create', function (\App\Core\Http\Request $request, \App\Cor
 $router->post('/blog/create', 'BlogController@store');
 // blog edit
 $router->get('/blog/{id}/edit', 'BlogController@edit')->name('blog.edit');
+// blog view
+$router->get('/blog/view/{id}', 'BlogController@view')->name('blog.view');
 // blog save edit
 $router->put('/blog/{id}', 'BlogController@save')->name('blog.save');
 

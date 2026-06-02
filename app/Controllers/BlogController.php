@@ -78,6 +78,22 @@ class BlogController extends Controller
     }
 
     /**
+     * Display blog page
+     * @param null|int $id
+     * @return \App\Core\Http\Response
+     * @throws \Exception
+     */
+    public function view($id = null)
+    {
+        $blog = Blog::find($id);
+        if (!$blog) {
+            return response_404();
+        }
+
+        return view('view_blog', compact('blog'));
+    }
+
+    /**
      * Update a blog
      * @param Request $request
      * @param null|int $id
