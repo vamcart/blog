@@ -13,7 +13,7 @@
             <h1><a href="./">{config key='name'}</a></h1>
             <div class="panel">
                 <a class="btn" href="{route name='todo.create'}">Добавить задачу</a>
-                {if isAdmin}
+                {if $isAdmin}
                 <a class="btn text-right" href="{route name='user.logoff'}">Выход</a>
                 {else}
                 <a class="btn text-right" href="{route name='user.auth'}">Авторизация</a>

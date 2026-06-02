@@ -56,10 +56,6 @@ class View
         $this->smarty->registerPlugin('function', 'route', function ($params, &$smarty) {
             return route($params['name'] ?? '', $params);
         });
-        // expose isAdmin helper
-        $this->smarty->registerPlugin('function', 'isAdmin', function () {
-            return isAdmin();
-        });
 
         // assign data to smarty
         if (is_array($data)) {
@@ -67,6 +63,13 @@ class View
                 $this->smarty->assign($k, $v);
             }
         }
+        
+        // expose session object
+        $this->smarty->assign('session', session());
+        // expose request object
+        $this->smarty->assign('request', request());
+        // expose isAdmin helper
+        $this->smarty->assign('isAdmin', isAdmin());
     }
 
     public function render()
