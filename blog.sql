@@ -3,30 +3,42 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `categories` (`id`, `name`, `description`) VALUES
+(1,	'Категория 1',	'Описание категории 1'),
+(2,	'Категория 2',	'Описание категории 2');
+
 DROP TABLE IF EXISTS `blogs`;
 CREATE TABLE `blogs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `text` text NOT NULL,
   `description` text NOT NULL,
+  `image` varchar(255) NOT NULL,
   `status` varchar(20) NOT NULL DEFAULT 'Ожидает проверки',
   `edited` int(2) NOT NULL DEFAULT '0',
+  `viewed` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `blogs` (`id`, `name`, `email`, `description`, `status`, `edited`) VALUES
-(1,	'admin',	'vam@test.com',	'Описание задачи',	'Выполнено',	0),
-(2,	'user',	'vam1@test.com',	'Описание задачи 1',	'Выполнено',	1),
-(3,	'admin2',	'vam2@test.com',	'Описание задачи 2',	'Выполняется',	0),
-(4,	'user3',	'vam@test.com',	'Описание задачи 3',	'Ожидает проверки',	0),
-(5,	'test',	'vamshop@gmail.com',	'описание',	'Ожидает проверки',	0),
-(6,	'vam',	'vam@test.com',	'fgdgdfgd',	'Ожидает проверки',	0),
-(7,	'vamshop',	'aaa@test.com',	'dfsffsfd',	'Ожидает проверки',	0),
-(8,	'bbb',	'bbb@test.com',	'bbbbb',	'Ожидает проверки',	0),
-(9,	'aaa',	'vvv@test.com',	'ddfggfdggfd',	'Ожидает проверки',	0),
-(10,	'ccc',	'sdfsdsd@sdfs.com',	'описание',	'Ожидает проверки',	0),
-(11,	'ddd',	'sdfsf@sdfsfddf.com',	'43534534345',	'Выполнено',	1),
-(12,	'test',	'test@test.com',	'test job',	'Ожидает проверки',	0),
-(13,	'<b>test</b><script>alert();</script>12',	'vam@test.com',	'<b>test</b><script>alert();</script>',	'Выполнено',	1);
+INSERT INTO `blogs` (`id`, `name`, `text`, `description`, `image`, `status`, `edited`, `viewed`) VALUES
+(1,	'Статья 1',	'Текст статьи 1',	'Описание статьи 1',	'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png',	'Выполнено',	0, 0),
+(2,	'Статья 2',	'Текст статьи 2',	'Описание статьи 2',	'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png',	'Выполнено',	1, 0);
 
--- 2023-06-06 17:53:49
+DROP TABLE IF EXISTS `blogs_to_categories`;
+CREATE TABLE `blogs_to_categories` (
+  `blog_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  PRIMARY KEY (`blog_id`, `category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `blogs_to_categories` (`blog_id`, `category_id`) VALUES
+(1, 1),
+(2, 2);

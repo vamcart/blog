@@ -132,12 +132,12 @@ class BlogController extends Controller
         $name = trim($request->input('name'));
         $errors = [];
         if (empty($name)) {
-            $errors[] = 'Имя не должно быть пустым';
+            $errors[] = 'Название не должно быть пустым';
         }
-        $email = trim($request->input('email'));
+        $text = trim($request->input('text'));
         $errors = [];
-        if (empty($email)) {
-            $errors[] = 'Email не должно быть пустым';
+        if (empty($text)) {
+            $errors[] = 'Текст не должен быть пустым';
         }
         // if has errors
         if (!empty($errors)) {

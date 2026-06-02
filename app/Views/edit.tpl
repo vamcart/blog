@@ -32,12 +32,12 @@
             <form action="{route name='blog.save' id=$blog->id}" method="post">
                 <input type="hidden" name="_method" value="PUT">
                 <div class="form-group">
-                    <label>Имя</label>
+                    <label>Название</label>
                     <input type="text" name="name" value="{$blog->name}" required>
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" value="{$blog->email}" required>
+                    <label>Текст</label>
+                    <input type="text" name="text" value="{$blog->text}" required>
                 </div>
                 <div class="form-group">
                     <label>Описание</label>

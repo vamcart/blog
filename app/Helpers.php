@@ -157,7 +157,7 @@ function dump()
 function white_list($value, $type = 'sort') 
 {
 	if ($type == 'sort') {
-	$list = array('id', 'name', 'email', 'description', 'status');
+	$list = array('id', 'name', 'text', 'description', 'status');
 	$name = 'id';
 	}
 

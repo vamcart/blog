@@ -26,8 +26,8 @@
   <thead class="table-light">
     <tr>
       <th scope="col">ID <a data-bs-toggle="tooltip" data-bs-title="Сортировка по id по возрастанию" href="/sort/id/order/asc"><i class="fas fa-chevron-up"></i></a> <a data-bs-toggle="tooltip" data-bs-title="Сортировка по id по убыванию" href="/sort/id/order/desc"><i class="fas fa-chevron-down"></i></a></th>
-      <th scope="col">Имя <a data-bs-toggle="tooltip" data-bs-title="Сортировка по имени по возрастанию" href="/sort/name/order/asc"><i class="fas fa-chevron-up"></i></a> <a data-bs-toggle="tooltip" data-bs-title="Сортировка по имени по убыванию" href="/sort/name/order/desc"><i class="fas fa-chevron-down"></i></a></th>
-      <th scope="col">Email <a data-bs-toggle="tooltip" data-bs-title="Сортировка по email по возрастанию" href="/sort/email/order/asc"><i class="fas fa-chevron-up"></i></a> <a data-bs-toggle="tooltip" data-bs-title="Сортировка по email по убыванию" href="/sort/email/order/desc"><i class="fas fa-chevron-down"></i></a></th>
+      <th scope="col">Название <a data-bs-toggle="tooltip" data-bs-title="Сортировка по названию по возрастанию" href="/sort/name/order/asc"><i class="fas fa-chevron-up"></i></a> <a data-bs-toggle="tooltip" data-bs-title="Сортировка по названию по убыванию" href="/sort/name/order/desc"><i class="fas fa-chevron-down"></i></a></th>
+      <th scope="col">Текст <a data-bs-toggle="tooltip" data-bs-title="Сортировка по тексту по возрастанию" href="/sort/text/order/asc"><i class="fas fa-chevron-up"></i></a> <a data-bs-toggle="tooltip" data-bs-title="Сортировка по тексту по убыванию" href="/sort/text/order/desc"><i class="fas fa-chevron-down"></i></a></th>
       <th scope="col">Описание <a data-bs-toggle="tooltip" data-bs-title="Сортировка по описанию по возрастанию" href="/sort/description/order/asc"><i class="fas fa-chevron-up"></i></a> <a data-bs-toggle="tooltip" data-bs-title="Сортировка по описанию по убыванию" href="/sort/description/order/desc"><i class="fas fa-chevron-down"></i></a></th>
       <th scope="col">Статус <a data-bs-toggle="tooltip" data-bs-title="Сортировка по статусу по возрастанию" href="/sort/status/order/asc"><i class="fas fa-chevron-up"></i></a> <a data-bs-toggle="tooltip" data-bs-title="Сортировка по статусу по убыванию" href="/sort/status/order/desc"><i class="fas fa-chevron-down"></i></a></th>
       <th scope="col"></th>
@@ -38,7 +38,7 @@
     <tr>
       <th scope="row">{$blog_list.id}</th>
       <td>{$blog_list.name|escape}</td>
-      <td>{$blog_list.email}</td>
+      <td>{$blog_list.text}</td>
       <td>{$blog_list.description|escape}</td>
       <td>{$blog_list.status}</td>
       <td>{if $blog_list.edited == 1}
