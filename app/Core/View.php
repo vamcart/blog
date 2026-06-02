@@ -32,7 +32,7 @@ class View
     public function __construct($file, $data = [])
     {
         $this->basePath = app()->getBasePath() . '/app/Views/';
-        $this->cachePath = app()->getBasePath() . '/cache/smarty/';
+        $this->cachePath = app()->getBasePath() . '/cache/';
         if (!is_dir($this->cachePath)) {
             mkdir($this->cachePath, 0775, true);
         }
