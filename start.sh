@@ -28,10 +28,6 @@ docker exec -it -w /var/www/html blog_webserver composer install --no-interactio
 printf "\nImporting database...\n"
 docker exec -i blog_database mysql -hlocalhost -udocker -pdocker docker < blog.sql
 
-# Set permissions for cache directory
-printf "\nSetting cache folder permissions...\n"
-chmod +w ./cache
-
 printf "\nAll tasks completed successfully.\n"
 printf "\n"
 printf "\nOpen http://localhost:8090 in your browser.\n"
