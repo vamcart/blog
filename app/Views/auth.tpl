@@ -16,6 +16,10 @@
                 <a class="btn" href="{url path='/'}">Вернуться к списку блогов</a>
         </div>
 
+            <ul class="msg msg-success">
+                    <li>Редактировать данные может только администратор. Авторизуйтесь.</li>
+            </ul>
+
         {if $session->hasFlash('errors')}
             <ul class="msg msg-error">
                 {foreach from=$session->flash('errors') item=error}
