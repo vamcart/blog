@@ -68,8 +68,5 @@ COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
 # Set working directory
 WORKDIR /var/www/html
 
-# 3. Set read, write, and execute permissions
-RUN chmod -R 775 /var/www/html/cache
-
 # Expose port 80 (mapped to 8085 by compose)
 EXPOSE 80

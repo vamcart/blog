@@ -30,7 +30,7 @@ docker exec -i blog_database mysql -hlocalhost -udocker -pdocker docker < blog.s
 
 # Set permissions for cache directory
 printf "\nSetting cache folder permissions...\n"
-chmod 775 ./cache
+chmod 777 ./cache
 
 printf "\nAll tasks completed successfully.\n"
 printf "\n"
