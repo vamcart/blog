@@ -28,8 +28,10 @@ libcurl4-openssl-dev \
 zip \
 unzip \
 openssl && \
-    rm -rf /var/lib/apt/lists/* && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    rm -rf /var/lib/apt/lists/*
+
+# Install composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install xdebug
 RUN pecl install xdebug-3.1.4 && \

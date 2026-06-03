@@ -26,7 +26,7 @@ docker exec -it -w /var/www/html blog_webserver composer install --no-interactio
 
 # Import database via Composer script
 printf "\nImporting database...\n"
-docker exec -i blog_database mysql -hlocalhost -udocker -pdocker docker < blog.sql
+docker exec -it -w /var/www/html blog_webserver composer run db:import
 
 # Set permissions for cache directory
 printf "\nSetting cache folder permissions...\n"
