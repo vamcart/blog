@@ -24,9 +24,9 @@ done
 printf "\nInstalling Composer dependencies...\n"
 docker exec -it -w /var/www/html blog_webserver composer install --no-interaction --prefer-dist
 
-# Import database via Composer script
+# Import database
 printf "\nImporting database...\n"
-docker exec -it -w /var/www/html blog_webserver composer run db:import
+docker exec -i blog_database mysql -hlocalhost -udocker -pdocker docker < blog.sql
 
 # Set permissions for cache directory
 printf "\nSetting cache folder permissions...\n"
