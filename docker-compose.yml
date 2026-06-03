@@ -26,7 +26,6 @@ services:
       - ${MYSQL_DATA_DIR}:/var/lib/mysql
       - ${MYSQL_LOG_DIR}:/var/log/mysql
       - ${XDEBUG_LOG_DIR}:/var/log/xdebug
-      - ./blog.sql:/var/lib/mysql/blog.sql
     networks:
       - app-network
     environment:
