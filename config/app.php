@@ -7,9 +7,9 @@ return [
         'type' => 'mysql',
         'host' => 'database',
         'port' => '3306',
-        'user' => 'root',
-        'password' => 'tiger',
-        'db' => 'blog',
+        'user' => 'docker',
+        'password' => 'docker',
+        'db' => 'docker',
     ],
     // use short_url (e.g http://domain.com/some-route will become /some-route)
     'short_url' => true

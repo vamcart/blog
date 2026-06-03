@@ -1,0 +1,49 @@
+services:
+  webserver:
+    build:
+      context: "./.docker-settings/webserver"
+      dockerfile: Dockerfile
+    ports:
+      - "${HOST_MACHINE_UNSECURE_HOST_PORT}:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - database
+    networks:
+      - app-network
+  database:
+    build:
+      context: "./.docker-settings/db"
+    container_name: "${COMPOSE_PROJECT_NAME}_database"
+    restart: "always"
+    ports:
+      - "127.0.0.1:${HOST_MACHINE_MYSQL_PORT}:3306"
+    volumes:
+      - ${MYSQL_INITDB_DIR}:/docker-entrypoint-initdb.d
+      - ${MYSQL_DATA_DIR}:/var/lib/mysql
+      - ${MYSQL_LOG_DIR}:/var/log/mysql
+    networks:
+      - app-network
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: database
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "${HOST_MACHINE_PHPMYADMIN_PORT}:80"
+    depends_on:
+      - database
+    networks:
+      - app-network
+
+volumes:
+  db_data:
+
+networks:
+  app-network:
+    driver: bridge
