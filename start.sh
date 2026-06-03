@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
-# Start services in detached mode
-printf "\nStarting Docker Compose...\n"
-docker compose up -d
+# Check if containers are already running; start only if needed
+if ! docker ps --filter "name=blog_webserver" --format '{{.Names}}' | grep -q blog_webserver || \
+   ! docker ps --filter "name=blog_database" --format '{{.Names}}' | grep -q blog_database; then
+  printf "\nStarting Docker Compose...\n"
+  docker compose up -d
+else
+  printf "\nContainers already running, skipping docker compose.\n"
+fi
 
 # Wait for containers to be healthy/running
 printf "\nWaiting for containers to start...\n"
@@ -21,6 +26,6 @@ docker exec -it -w /var/www/html blog_webserver composer install --no-interactio
 
 # Import database via Composer script
 printf "\nImporting database...\n"
-docker exec -it -w /var/www/html blog_webserver composer run db:import
+docker exec -i blog_database mysql -hlocalhost -udocker -pdocker docker < blog.sql
 
 printf "\nAll tasks completed successfully.\n"
