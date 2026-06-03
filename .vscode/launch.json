@@ -11,7 +11,7 @@
       "port": 9003,
       // server -> local
       "pathMappings": {
-        "/var/www/html/blog": "${workspaceFolder}"
+        "/var/www/html": "${workspaceFolder}"
       }
     },
     {

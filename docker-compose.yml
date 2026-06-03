@@ -24,6 +24,7 @@ services:
       - ${MYSQL_DATA_DIR}:/var/lib/mysql
       - ./blog.sql:/var/lib/mysql/blog.sql
       - ${MYSQL_LOG_DIR}:/var/log/mysql
+      - ${XDEBUG_LOG_DIR}:/var/log/xdebug
     networks:
       - app-network
     environment:
@@ -31,6 +32,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      XDEBUG_CONFIG: "client_host=host.docker.internal remote_port=${XDEBUG_PORT}"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: "${COMPOSE_PROJECT_NAME}_phpmyadmin"
