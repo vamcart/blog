@@ -21,6 +21,71 @@
                 {/if}
             </div>
             <div id="data">
+
+
+
+
+{foreach $categories as $category}
+<h3>{$category.name}</h3>
+
+<div class="table-responsive">
+<table class="table">
+  <thead class="table-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Название категории</th>
+      <th scope="col">Описание</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>    
+{foreach $category.blogs as $blog}
+    <tr>
+      <th scope="row">{$blog.id}</th>
+      <td>{$blog.name}</td>
+      <td>{$blog.description}</td>
+      <td>{if $blog.edited == 1}
+      <div class="text-success">Отредактировано администратором</div>
+      {/if}{if isAdmin}
+      <a href="{route name='blog.edit' id=$blog.id}">Редактировать</a>
+      {/if}</td>
+    </tr>
+{/foreach}
+  </tbody>
+</table>
+</div>
+
+{/foreach}
+
+
+<h3>Список категорий</h3>
+<div class="table-responsive">
+<table class="table">
+  <thead class="table-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Название категории</th>
+      <th scope="col">Описание</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+{foreach $categories as $category}
+    <tr>
+      <th scope="row">{$category.id}</th>
+      <td>{$category.name}</td>
+      <td>{$category.description}</td>
+      <td>{if $category.edited == 1}
+      <div class="text-success">Отредактировано администратором</div>
+      {/if}{if isAdmin}
+      <a href="{route name='category.edit' id=$category.id}">Редактировать</a>
+      {/if}</td>
+    </tr>
+{/foreach}
+  </tbody>
+</table>
+</div>
+            
 <h3>Список блогов</h3>
 <div class="table-responsive">
 <table class="table">
@@ -55,34 +120,6 @@
       <td colspan="6">{$pagination nofilter}</td>
     </tr>
   </tfoot>
-</table>
-</div>
-
-<h3>Список категорий</h3>
-<div class="table-responsive">
-<table class="table">
-  <thead class="table-light">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Название категории</th>
-      <th scope="col">Описание</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-{foreach $categories as $category}
-    <tr>
-      <th scope="row">{$category.id}</th>
-      <td>{$category.name}</td>
-      <td>{$category.description}</td>
-      <td>{if $category.edited == 1}
-      <div class="text-success">Отредактировано администратором</div>
-      {/if}{if isAdmin}
-      <a href="{route name='category.edit' id=$category.id}">Редактировать</a>
-      {/if}</td>
-    </tr>
-{/foreach}
-  </tbody>
 </table>
 </div>
 

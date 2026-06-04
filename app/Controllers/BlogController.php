@@ -34,10 +34,11 @@ class BlogController extends Controller
             $blogs[] = $blog->toArray();
         }
 
-        $categoryList = Category::all($sort, $order, $page, $pages->get_limit());
+        $categoryList = Category::blogs($sort, $order, $page, $pages->get_limit());
 
         foreach ($categoryList as $category) {
             $categories[] = $category->toArray();
+            //$categories['blogs'] = Category::blogs($category['id']);
         }
         
         $view_data = compact('blogs', 'categories');
