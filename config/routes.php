@@ -13,7 +13,8 @@ $router->get('/user/logoff', 'UserController@logoff')->name('user.logoff');
 // blog create
 $router->get('/blog/create', function (\App\Core\Http\Request $request, \App\Core\Session $session) {
     $blog = new App\Models\Blog();
-    return view('edit_blog', compact('blog'));
+    $categories = App\Models\Blog::find_categories();
+    return view('edit_blog', compact('blog', 'categories'));
 })->name('blog.create');
 $router->post('/blog/create', 'BlogController@store');
 // blog edit

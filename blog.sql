@@ -27,14 +27,15 @@ CREATE TABLE `blogs` (
   `status` varchar(20) NOT NULL DEFAULT 'Ожидает проверки',
   `edited` int(2) NOT NULL DEFAULT '0',
   `viewed` int(11) NOT NULL DEFAULT '0',
+  `category_id` int(2) NOT NULL DEFAULT '0',
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,   
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `blogs` (`id`, `name`, `text`, `description`, `image`, `status`, `edited`, `viewed`) VALUES
-(1,	'Статья 1',	'Текст статьи 1',	'Описание статьи 1',	'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png',	'Активный',	0, 0),
-(2,	'Статья 2',	'Текст статьи 2',	'Описание статьи 2',	'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png',	'Неактивный',	1, 0);
+INSERT INTO `blogs` (`id`, `name`, `text`, `description`, `image`, `status`, `edited`, `viewed`, `category_id`) VALUES
+(1,	'Статья 1',	'Текст статьи 1',	'Описание статьи 1',	'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png',	'Активный',	0, 0, 1),
+(2,	'Статья 2',	'Текст статьи 2',	'Описание статьи 2',	'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png',	'Неактивный',	1, 0, 2);
 
 DROP TABLE IF EXISTS `blogs_to_categories`;
 CREATE TABLE `blogs_to_categories` (
