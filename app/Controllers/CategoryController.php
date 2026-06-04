@@ -71,6 +71,22 @@ class CategoryController extends Controller
     }
 
     /**
+     * Display category page
+     * @param null|int $id
+     * @return \App\Core\Http\Response
+     * @throws \Exception
+     */
+    public function view($id = null)
+    {
+        $category = Category::find($id);
+        if (!$category) {
+            return response_404();
+        }
+
+        return view('view_category', compact('category'));
+    }
+
+    /**
      * Update a category
      * @param Request $request
      * @param null|int $id

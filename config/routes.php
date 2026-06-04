@@ -32,5 +32,7 @@ $router->get('/category/create', function (\App\Core\Http\Request $request, \App
 $router->post('/category/create', 'CategoryController@store');
 // category edit
 $router->get('/category/{id}/edit', 'CategoryController@edit')->name('category.edit');
+// category view
+$router->get('/category/view/{id}', 'CategoryController@view')->name('category.view');
 // category save edit
 $router->put('/category/{id}', 'CategoryController@save')->name('category.save');

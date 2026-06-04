@@ -52,7 +52,7 @@ class Category extends Model
      * Display homepage
      * @throws \Exception
      */
-    public static function blogs($id = null,$sort = 'id', $order = 'desc', $page = 1, $limit = 3)
+    public static function blogs($id = null,$sort = 'id', $order = 'desc', $page = 1, $limit = 999)
     { 
 
         $sort = white_list($sort, 'sort');
@@ -71,7 +71,7 @@ class Category extends Model
             $sanitizedResult = array_map(function($value) {
                 return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
             }, $data);  
-            $sanitizedResult['blogs'] = Blog::allByCategory($data['id'], $sort, $order, $page, $limit);
+            $sanitizedResult['blogs'] = Blog::allByCategory($data['id'], $sort, $order, $page, 3);
             $model->_fill($sanitizedResult);
             $modelList[] = $model;
         }

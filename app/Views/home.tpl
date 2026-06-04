@@ -26,14 +26,14 @@
 
 
 {foreach $categories as $category}
-<h3>{$category.name}</h3>
+<h3><a href="{route name='category.view' id=$category.id}">{$category.name}</a></h3>
 
 <div class="table-responsive">
 <table class="table">
   <thead class="table-light">
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Название категории</th>
+      <th scope="col">Название блога</th>
       <th scope="col">Описание</th>
       <th scope="col"></th>
     </tr>
@@ -42,7 +42,7 @@
 {foreach $category.blogs as $blog}
     <tr>
       <th scope="row">{$blog.id}</th>
-      <td>{$blog.name}</td>
+      <td><a href="{route name='blog.view' id=$blog.id}">{$blog.name}</a></td>
       <td>{$blog.description}</td>
       <td>{if $blog.edited == 1}
       <div class="text-success">Отредактировано администратором</div>
