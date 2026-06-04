@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>{config key='name'} - Редактировать категорию</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{url path='/css/bootstrap/bootstrap.min.css'}" rel="stylesheet">
+        <link rel="stylesheet" href="{url path='/css/fontawesome/css/all.min.css'}">
         <link rel="stylesheet" href="{url path='/css/app.css'}">
     </head>
     <body>
