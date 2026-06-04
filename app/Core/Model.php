@@ -120,6 +120,15 @@ class Model
                 // store
                 $this->id = $this->db->lastInsertedId();
             }
+            if ($properties['category_id']) {
+                $this->db->prepare('DELETE FROM blogs_to_categories WHERE blog_id = :blog_id');
+                $this->db->bindValue(':blog_id', $this->id);
+                $this->db->execute();
+                $this->db->prepare('INSERT INTO blogs_to_categories (blog_id, category_id) VALUES (:blog_id, :category_id) ON DUPLICATE KEY UPDATE category_id = VALUES(category_id)');
+                $this->db->bindValue(':blog_id', $this->id);
+                $this->db->bindValue(':category_id', $properties['category_id']);
+                $this->db->execute();
+            }
         }
     }
 
@@ -184,6 +193,32 @@ class Model
     }
 
     /**
+     * Find a record by id
+     * @param $id
+     * @return Model|void
+     */
+    public static function findWithCategories($id)
+    {
+        $db = resolve('db');
+        $contextModel = new static();
+        $db->prepare('SELECT *, blogs_to_categories.category_id FROM ' . $contextModel->table . ' LEFT JOIN blogs_to_categories ON ' . $contextModel->table . '.id = blogs_to_categories.blog_id WHERE ' . $contextModel->table . '.id = :id LIMIT 1');
+        $db->bindValue(':id', $id);
+        $db->execute();
+        $result = $db->fetchAssociative();
+        // assoc the object to this model properties
+        if ($result) {
+            // Apply htmlspecialchars to every value in the array
+            $sanitizedResult = array_map(function($value) {
+                return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
+            }, $result);            
+            $model = new static();
+            $model->_fill($sanitizedResult);
+            return $model;
+        }
+        return;
+    }
+
+    /**
      * Delete a record using model id
      * @param $id
      */
@@ -195,4 +230,49 @@ class Model
         $db->bindValue(':id', $id);
         $db->execute();
     }
+
+    public static function find_categories()
+    {
+        $db = resolve('db');
+        $contextModel = new static();
+        $db->prepare('SELECT * FROM categories ORDER BY name');
+        $db->execute();
+        $result = $db->fetchAllAssociative();
+        $modelList = [];
+        // transform to array of models
+        foreach ($result as $data) {
+            $model = new static();
+            // Apply htmlspecialchars to every value in the array
+            $sanitizedResult = array_map(function($value) {
+                return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
+            }, $data);  
+            $model->_fill($sanitizedResult);
+            $modelList[] = $model;
+        }
+
+        return $modelList;
+    }
+
+    public static function find_categories_plain()
+    {
+        $db = resolve('db');
+        $contextModel = new static();
+        $db->prepare('SELECT * FROM categories ORDER BY name');
+        $db->execute();
+        $result = $db->fetchAllAssociative();
+        $modelList = [];
+        // transform to array of models
+        foreach ($result as $data) {
+            $model = new static();
+            // Apply htmlspecialchars to every value in the array
+            $sanitizedResult = array_map(function($value) {
+                return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
+            }, $data);  
+            $model->_fill($sanitizedResult);
+            $modelList[] = $model;
+        }
+
+        return $result;
+    }    
+
 }

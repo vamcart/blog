@@ -49,16 +49,22 @@
                     <label>Описание</label>
                     <textarea name="description">{$blog->description}</textarea>
                 </div>
-                {if $blog->id}
-                    <div class="form-group">
-                        <label>Статус</label>
-                        <select name="status">
-                            {foreach ['Ожидает проверки', 'Выполняется', 'Выполнено'] as $status}
-                                <option value="{$status}"{if $status == $blog->status} selected{/if}>{$status}</option>
-                            {/foreach}
-                        </select>
-                    </div>
-                {/if}
+                <div class="form-group">
+                    <label>Статус</label>
+                    <select name="status">
+                        {foreach ['Активный', 'Неактивный'] as $status}
+                            <option value="{$status}"{if $status == $blog->status} selected{/if}>{$status}</option>
+                        {/foreach}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Категория</label>
+                    <select name="category_id">
+                        {foreach $categories as $category}
+                            <option value="{$category->id}"{if $category->id == $blog->category_id} selected{/if}>{$category->name}</option>
+                        {/foreach}                            
+                    </select>
+                </div>
                 <button class="btn primary" type="submit">Сохранить</button>
             </form>
         </div>

@@ -14,7 +14,7 @@ class Blog extends Model
     /**
      * @var array list of safe properties
      */
-    protected $fillable = ['name', 'text', 'description', 'status', 'edited'];
+    protected $fillable = ['name', 'text', 'description', 'status', 'edited', 'category_id'];
 
     /**
      * Get all records from db

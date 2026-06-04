@@ -33,8 +33,8 @@ CREATE TABLE `blogs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `blogs` (`id`, `name`, `text`, `description`, `image`, `status`, `edited`, `viewed`) VALUES
-(1,	'Статья 1',	'Текст статьи 1',	'Описание статьи 1',	'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png',	'Выполнено',	0, 0),
-(2,	'Статья 2',	'Текст статьи 2',	'Описание статьи 2',	'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png',	'Выполнено',	1, 0);
+(1,	'Статья 1',	'Текст статьи 1',	'Описание статьи 1',	'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png',	'Активный',	0, 0),
+(2,	'Статья 2',	'Текст статьи 2',	'Описание статьи 2',	'https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png',	'Неактивный',	1, 0);
 
 DROP TABLE IF EXISTS `blogs_to_categories`;
 CREATE TABLE `blogs_to_categories` (

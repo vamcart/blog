@@ -22,6 +22,7 @@ class BlogController extends Controller
     public function index($sort = 'id', $order = 'desc', $page = 1)
     {
         // create a new object
+
         $pages = new Paginator(3, 'page');
 
         // set the total records, calling a method to get the number of records from a model
@@ -69,12 +70,13 @@ class BlogController extends Controller
      */
     public function edit(Session $session, $id = null)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::findWithCategories($id);
         if (!$blog) {
             return response_404();
         }
+        $categories = Blog::find_categories();
 
-        return view('edit_blog', compact('blog'));
+        return view('edit_blog', compact('blog', 'categories'));
     }
 
     /**
