@@ -2,16 +2,18 @@
 
 namespace App\Core;
 
+use Smarty\Variable;
+
 class Model
 {
     /**
      * Database object
      */
-    protected $db;
+    protected object $db;
     /**
      * Table name associated with this model
      */
-    protected $table;
+    protected $table = '';
     /**
      * Model properties
      */
@@ -45,7 +47,7 @@ class Model
      * @param $property
      * @param $value
      */
-    public function __set($property, $value)
+    public function __set(string $property, string $value)
     {
         $this->properties[$property] = $value;
     }
@@ -170,7 +172,7 @@ class Model
      * Get all records from db
      * @return array An array of Category
      */
-    public static function all($sort, $order, $page, $limit)
+    public static function all(string $sort, string $order, string $page, string $limit)
     { 
         $contextModel = new static();
 
@@ -202,7 +204,7 @@ class Model
      * @param $id
      * @return Model|void
      */
-    public static function find($id)
+    public static function find(int $id)
     {
         $db = resolve('db');
         $contextModel = new static();
@@ -228,7 +230,7 @@ class Model
      * @param $id
      * @return Model|void
      */
-    public static function findWithCategories($id)
+    public static function findWithCategories(int$id)
     {
         $db = resolve('db');
         $contextModel = new static();
@@ -253,7 +255,7 @@ class Model
      * Delete a record using model id
      * @param $id
      */
-    public static function delete($id)
+    public static function delete(int $id)
     {
         $db = resolve('db');
         $contextModel = new static();

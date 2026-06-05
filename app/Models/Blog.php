@@ -20,7 +20,7 @@ class Blog extends Model
      * Get all records from db
      * @return array An array of Blog
      */
-    public static function byCategory($category_id, $sort, $order, $page, $limit)
+    public static function byCategory(int $category_id, string $sort, string $order, string $page, string $limit)
     { 
 
         $sort = white_list($sort, 'sort');

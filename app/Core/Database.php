@@ -10,7 +10,7 @@ class Database
     /**
      * Connection PDO object
      */
-    protected $connection;
+    protected ?object $connection;
 
     /**
      * @var \PDOStatement PDOStatement Object
