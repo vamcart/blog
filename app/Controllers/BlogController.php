@@ -74,6 +74,11 @@ class BlogController extends Controller
         if (!$blog) {
             return response_404();
         }
+
+        if (!isAdmin()) {
+            return to_route('user.auth');
+        }
+                
         $categories = Blog::find_categories();
 
         return view('edit_blog', compact('blog', 'categories'));
@@ -95,12 +100,12 @@ class BlogController extends Controller
         $similar_blogs_list = Blog::findSimilar($blog->id, $blog->name);
 
         foreach ($similar_blogs_list as $similar) {
-            $similar_blogs[] = $similar->toArray();
+            $blogs[] = $similar->toArray();
         }        
 
         Blog::increaseViewed($blog->id);
 
-        return view('view_blog', compact('blog', 'similar_blogs'));
+        return view('view_blog', compact('blog', 'blogs'));
     }
 
     /**

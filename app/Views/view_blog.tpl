@@ -32,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-            {foreach $similar_blogs as $blog_list}
+            {foreach $blogs as $blog_list}
                 <tr>
                 <th scope="row">{$blog_list.id}</th>
                 <td><a href="{route name='blog.view' id=$blog_list.id}">{$blog_list.name}</a></td>
