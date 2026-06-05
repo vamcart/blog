@@ -78,6 +78,7 @@
                     </select>
                 </div>
                 <button class="btn primary" type="submit">Сохранить</button>
+                <button class="btn" onclick="history.back()">Вернуться</button>
             </form>
         </div>
     </body>
