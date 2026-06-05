@@ -98,6 +98,7 @@ class BlogController extends Controller
         }
 
         $similar_blogs_list = Blog::findSimilar($blog->id, $blog->name);
+        $blogs = [];
 
         foreach ($similar_blogs_list as $similar) {
             $blogs[] = $similar->toArray();

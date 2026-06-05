@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:8.1-apache
 
 # Update
 RUN apt-get -y update --fix-missing && \
@@ -34,7 +34,7 @@ openssl && \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install xdebug
-RUN pecl install xdebug-3.1.4 && \
+RUN pecl install xdebug-3.5.1 && \
     docker-php-ext-enable xdebug && \
     mkdir /var/log/xdebug
 

@@ -122,7 +122,7 @@ class Model
                 // store
                 $this->id = $this->db->lastInsertedId();
             }
-            if ($properties['category_id']) {
+            if (array_key_exists('category_id', $properties)) {
                 $this->db->prepare('DELETE FROM blogs_to_categories WHERE blog_id = :blog_id');
                 $this->db->bindValue(':blog_id', $this->id);
                 $this->db->execute();

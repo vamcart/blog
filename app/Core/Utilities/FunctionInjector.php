@@ -46,7 +46,8 @@ class FunctionInjector
         $arguments = [];
 
         foreach ($reflection->getParameters() as $parameter) {
-            $parameterClass = $parameter->getClass();
+            $type = $parameter->getType();
+            $parameterClass = ($type && !$type->isBuiltin()) ? new \ReflectionClass($type->getName()) : null;
             $parameterName = $parameter->getName();
 
             if (isset($args[$parameterName])) {
