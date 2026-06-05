@@ -27,7 +27,7 @@ class Blog extends Model
         $order = white_list($order, 'order');
 
         $db = resolve('db');
-        $db->prepare('select * from blogs where category_id = :id order by ' . $sort . ' ' . $order . ' ' . $limit);
+        $db->prepare('select * from blogs where category_id = :id and status = "Активный" order by ' . $sort . ' ' . $order . ' ' . $limit);
         $db->bindValues(['id' => $category_id]);
         $db->execute();
         $result = $db->fetchAllAssociative();

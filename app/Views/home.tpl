@@ -32,10 +32,13 @@
 <table class="table">
   <thead class="table-light">
     <tr>
+      <th scope="col"></th>
       <th scope="col">ID</th>
       <th scope="col">Название блога</th>
       <th scope="col">Текст статьи</th>
       <th scope="col">Описание</th>
+      <th scope="col">Просмотры</th>
+      <th scope="col">Дата</th>
       <th scope="col">Статус</th>
       <th scope="col"></th>
     </tr>

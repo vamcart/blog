@@ -16,7 +16,7 @@
                 <a class="btn" href="{url path='/'}">Вернуться на главную страницу</a>
             </div>
 
-            <h3>Список блогов</h3>
+            <h3>Список статей категории</h3>
             {include file="blog_list.tpl"}
         </div>
     </body>

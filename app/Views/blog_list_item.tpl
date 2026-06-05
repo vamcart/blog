@@ -1,5 +1,6 @@
                 <tr>
-                <th scope="row">{$blog_list.id}</th>
+                <th scope="row">{if $blog_list.image}<img width="40" height="40" src="{$blog_list.image}" alt="{$blog_list.name}" class="img-fluid">{/if}</th>
+                <td scope="row">{$blog_list.id}</td>
                 <td><a href="{route name='blog.view' id=$blog_list.id}">{$blog_list.name}</a></td>
                 <td>{$blog_list.text}</td>
                 <td>{$blog_list.description}</td>

@@ -10,6 +10,10 @@
     <body>
         <div class="container">
             <h1>{$blog->name}</h1>
+
+            {if $blog->image}
+            <img src="{$blog->image}" alt="{$blog->name}" class="img-fluid">
+            {/if}
             <p>{$blog->text}</p>
             <p>{$blog->description}</p>
 
