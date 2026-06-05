@@ -53,7 +53,7 @@ class BlogController extends Controller
      */
     public function delete(Session $session, $id = null)
     {
-        $blog = Blog::delete($id);
+        Blog::delete($id);
 
         $errors[] = 'Запись удалена!';
         session()->setFlash('errors', $errors);
@@ -92,7 +92,13 @@ class BlogController extends Controller
             return response_404();
         }
 
-        return view('view_blog', compact('blog'));
+        $similar_blogs_list = Blog::findSimilar($blog->id, $blog->name);
+
+        foreach ($similar_blogs_list as $similar) {
+            $similar_blogs[] = $similar->toArray();
+        }        
+
+        return view('view_blog', compact('blog', 'similar_blogs'));
     }
 
     /**

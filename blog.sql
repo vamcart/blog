@@ -30,7 +30,8 @@ CREATE TABLE `blogs` (
   `category_id` int(2) NOT NULL DEFAULT '0',
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,   
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  FULLTEXT INDEX idx_name_description (name, description)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `blogs` (`id`, `name`, `text`, `description`, `image`, `status`, `edited`, `viewed`, `category_id`) VALUES

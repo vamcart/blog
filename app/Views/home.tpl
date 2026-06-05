@@ -12,7 +12,7 @@
         <div class="container">
             <h1><a href="./">{config key='name'}</a></h1>
             <div class="panel">
-                <a class="btn" href="{route name='blog.create'}">Добавить блог</a>
+                <a class="btn" href="{route name='blog.create'}">Добавить статью</a>
                 <a class="btn" href="{route name='category.create'}">Добавить категорию</a>
                 {if $isAdmin}
                 <a class="btn text-right" href="{route name='user.logoff'}">Выход</a>
