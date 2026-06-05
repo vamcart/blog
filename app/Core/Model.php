@@ -167,6 +167,37 @@ class Model
     }
 
     /**
+     * Get all records from db
+     * @return array An array of Category
+     */
+    public static function all($sort, $order, $page, $limit)
+    { 
+        $contextModel = new static();
+
+        $sort = white_list($sort, 'sort');
+        $order = white_list($order, 'order');
+
+        $db = resolve('db');
+        $db->prepare('select * from ' . $contextModel->table . ' order by ' . $sort . ' ' . $order . ' ' . $limit);
+
+        $db->execute();
+        $result = $db->fetchAllAssociative();
+        $modelList = [];
+        // transform to array of models
+        foreach ($result as $data) {
+            $model = new static();
+            // Apply htmlspecialchars to every value in the array
+            $sanitizedResult = array_map(function($value) {
+                return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
+            }, $data);  
+            $model->_fill($sanitizedResult);
+            $modelList[] = $model;
+        }
+
+        return $modelList;
+    }
+
+    /**
      * Find a record by id
      * @param $id
      * @return Model|void
