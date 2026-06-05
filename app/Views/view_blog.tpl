@@ -17,13 +17,40 @@
             <p>{$blog->text}</p>
             <p>{$blog->description}</p>
 
+            <br />
+
+            <p>Просмотры: {$blog->viewed}</p>
+            <p>Дата: {$blog->created_at}</p>
+            
             <div class="panel">
                 <a class="btn" href="{url path='/'}">Вернуться к списку блогов</a>
                 <a class="btn" href="{route name='blog.edit' id=$blog->id}">Редактировать статью</a>
             </div>
 
             <h3>Похожие статьи</h3>
-            {include file="blog_list.tpl"}
+
+            <div class="table-responsive">
+            <table class="table">
+            <thead class="table-light">
+                <tr>
+                <th scope="col"></th>
+                <th scope="col">ID</th>
+                <th scope="col">Название блога</th>
+                <th scope="col">Текст статьи</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Просмотры</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Статус</th>
+                <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>    
+            {foreach $blogs as $blog_list}
+                {include file="blog_list_item.tpl"}
+            {/foreach}
+            </tbody>
+            </table>
+            </div>
 
         </div>
     </body>
