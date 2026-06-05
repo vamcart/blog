@@ -55,6 +55,8 @@
 </table>
 </div>
 
+<a class="btn text-right mb-2" href="{route name='category.view' id=$category.id}">Все статьи</a>
+
 {/foreach}
 
 
