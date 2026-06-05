@@ -47,9 +47,9 @@ class Category extends Model
 
         return $modelList;
     }
-    
+
     /**
-     * Display homepage
+     * Blogs of category
      * @throws \Exception
      */
     public static function blogs($id = null,$sort = 'id', $order = 'desc', $page = 1, $limit = 999)
@@ -79,13 +79,4 @@ class Category extends Model
         return $modelList;
     }
 
-    public static function count_all()
-    {
-    	$db = resolve('db');
-    	$db->prepare("select * from categories");
-    	$db->execute();
-    	$count = $db->countRows();
-
-        return $count;
-    }    
 }

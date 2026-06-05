@@ -9,6 +9,7 @@ use App\Core\Session;
 use App\Core\Utilities\FunctionInjector;
 use App\Core\View;
 use App\Models\Category;
+use App\Models\Blog;
 use voku\helper\Paginator;
 
 
@@ -76,14 +77,28 @@ class CategoryController extends Controller
      * @return \App\Core\Http\Response
      * @throws \Exception
      */
-    public function view($id = null)
+    public function view($id = null, $sort = 'id', $order = 'desc', $page = 1)
     {
         $category = Category::find($id);
         if (!$category) {
             return response_404();
         }
 
-        return view('view_category', compact('category'));
+        $pages = new Paginator(3, 'page');
+
+        // set the total records, calling a method to get the number of records from a model
+        $pages->set_total(Blog::count_all($id));
+
+        $blogList = Blog::byCategory($id, $sort, $order, $page, $pages->get_limit());
+
+        foreach ($blogList as $blog) {
+            $blogs[] = $blog->toArray();
+        }
+        
+        $view_data = compact('blogs', 'category');
+        $view_merge = array_merge(array('pagination' => $pages->page_links()), $view_data);
+
+        return view('view_category', $view_merge);
     }
 
     /**

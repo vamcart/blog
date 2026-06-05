@@ -34,5 +34,7 @@ $router->post('/category/create', 'CategoryController@store');
 $router->get('/category/{id}/edit', 'CategoryController@edit')->name('category.edit');
 // category view
 $router->get('/category/view/{id}', 'CategoryController@view')->name('category.view');
+// category view sort
+$router->get('/category/view/{id}/sort/{sort}/order/{order}', 'CategoryController@view')->name('category.view.sort');
 // category save edit
 $router->put('/category/{id}', 'CategoryController@save')->name('category.save');

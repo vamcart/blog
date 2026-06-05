@@ -253,26 +253,20 @@ class Model
         return $modelList;
     }
 
-    public static function find_categories_plain()
+    public static function count_all($category_id = null)
     {
-        $db = resolve('db');
+    	$db = resolve('db');
         $contextModel = new static();
-        $db->prepare('SELECT * FROM categories ORDER BY name');
-        $db->execute();
-        $result = $db->fetchAllAssociative();
-        $modelList = [];
-        // transform to array of models
-        foreach ($result as $data) {
-            $model = new static();
-            // Apply htmlspecialchars to every value in the array
-            $sanitizedResult = array_map(function($value) {
-                return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
-            }, $data);  
-            $model->_fill($sanitizedResult);
-            $modelList[] = $model;
+        if ($category_id) {
+            $db->prepare("select * from " . $contextModel->table . " where category_id = :id");
+            $db->bindValues(['id' => $category_id]);
+        } else {
+            $db->prepare("select * from " . $contextModel->table . "");
         }
+    	$db->execute();
+    	$count = $db->countRows();
 
-        return $result;
-    }    
-
+        return $count;
+    }  
+   
 }
