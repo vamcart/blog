@@ -31,15 +31,15 @@ CREATE TABLE `blogs` (
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,   
   PRIMARY KEY (`id`),
-  FULLTEXT INDEX idx_category_id (category_id),
+  INDEX idx_category_id (category_id),
   FULLTEXT INDEX idx_name_description (name, description)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `blogs` (`id`, `name`, `text`, `description`, `image`, `status`, `edited`, `viewed`, `category_id`) VALUES
-(1,	'Статья 1',	'Текст статьи 1',	'Описание статьи 1',	'/img/card-master.png',	'Активный',	0, 0, 1),
-(2,	'Статья 2',	'Текст статьи 2',	'Описание статьи 2',	'/img/card-visa.png',	'Активный',	1, 0, 2),
-(3,	'Статья 3',	'Текст статьи 3',	'Описание статьи 3',	'/img/card-paypal.png',	'Активный',	1, 0, 2);
-(4,	'Название статьи',	'Текст',	'Описание',	'',	'Активный',	1, 0, 2);
+(1,	'Статья 1',	'Текст статьи 1',	'Описание статьи 1',	'/img/card-master.png',	'Активный',	0, 0, 2),
+(2,	'Статья 2',	'Текст статьи 2',	'Описание статьи 2',	'/img/card-visa.png',	'Активный',	0, 0, 2),
+(3,	'Статья 3',	'Текст статьи 3',	'Описание статьи 3',	'/img/card-paypal.png',	'Активный',	0, 0, 2),
+(4,	'Название статьи',	'Текст',	'Описание',	'',	'Активный',	0, 0, 1);
 
 DROP TABLE IF EXISTS `blogs_to_categories`;
 CREATE TABLE `blogs_to_categories` (
