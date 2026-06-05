@@ -29,7 +29,10 @@ class Category extends Model
         $order = white_list($order, 'order');
 
         $db = resolve('db');
-        $db->prepare('select * from categories order by ' . $sort . ' ' . $order . ' limit ' . $limit);
+        //Выводим все категории
+        //$db->prepare('select * from categories order by ' . $sort . ' ' . $order . ' limit ' . $limit);
+        //Выводим только категории со статьями
+        $db->prepare('select categories.* from categories left join blogs on blogs.category_id = categories.id where blogs.category_id > 0 group by categories.id order by ' . $sort . ' ' . $order . ' limit ' . $limit);
 
         $db->execute();
         $result = $db->fetchAllAssociative();
