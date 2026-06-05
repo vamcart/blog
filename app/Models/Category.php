@@ -41,7 +41,10 @@ class Category extends Model
             $sanitizedResult = array_map(function($value) {
                 return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
             }, $data);  
-            $sanitizedResult['blogs'] = Blog::allByCategory($data['id'], $sort, $order, $page, 3);
+
+            $blogList = Blog::byCategory($data['id'], $sort, $order, $page, 'limit 3');
+                    
+            $sanitizedResult['blogs'] = array_map(fn($blog) => $blog->toArray(), $blogList);
             $model->_fill($sanitizedResult);
             $modelList[] = $model;
         }
