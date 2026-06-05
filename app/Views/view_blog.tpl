@@ -15,6 +15,7 @@
 
             <div class="panel">
                 <a class="btn" href="{url path='/'}">Вернуться к списку блогов</a>
+                    <a class="btn" href="{route name='blog.edit' id=$blog->id}">Редактировать</a>
             </div>
 
             <h3>Похожие статьи</h3>

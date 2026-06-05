@@ -47,7 +47,19 @@
                 </div>
                 <div class="form-group">
                     <label>Описание</label>
-                    <textarea name="description">{$blog->description}</textarea>
+                    <textarea columns="50" rows="5" name="description">{$blog->description}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>URL картинки</label>
+                    <input type="text" name="image" value="{$blog->image}" required>
+                </div>
+                <div class="form-group">
+                    <label>Количество просмотров</label>
+                    <input type="text" name="viewed" value="{$blog->viewed}" required>
+                </div>
+                <div class="form-group">
+                    <label>Текст</label>
+                    <input type="text" name="text" value="{$blog->text}" required>
                 </div>
                 <div class="form-group">
                     <label>Статус</label>

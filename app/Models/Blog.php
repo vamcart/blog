@@ -14,7 +14,7 @@ class Blog extends Model
     /**
      * @var array list of safe properties
      */
-    protected $fillable = ['name', 'text', 'description', 'status', 'edited', 'category_id'];
+    protected $fillable = ['name', 'text', 'description', 'image', 'viewed', 'status', 'edited', 'category_id'];
 
     /**
      * Get all records from db
@@ -79,6 +79,17 @@ class Blog extends Model
         }
 
         return $modelList;
+    }    
+
+    /**
+     * Get all records from db
+     */
+    public static function increaseViewed(int $blog_id) : void
+    {
+        $db = resolve('db');
+        $db->prepare('UPDATE blogs SET viewed = viewed + 1 WHERE id = :id');
+        $db->bindValues(['id' => $blog_id]);
+        $db->execute();
     }    
 
 }

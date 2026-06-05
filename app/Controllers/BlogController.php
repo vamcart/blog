@@ -98,6 +98,8 @@ class BlogController extends Controller
             $similar_blogs[] = $similar->toArray();
         }        
 
+        Blog::increaseViewed($blog->id);
+
         return view('view_blog', compact('blog', 'similar_blogs'));
     }
 
