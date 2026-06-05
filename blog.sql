@@ -31,6 +31,7 @@ CREATE TABLE `blogs` (
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,   
   PRIMARY KEY (`id`),
+  FULLTEXT INDEX idx_category_id (category_id),
   FULLTEXT INDEX idx_name_description (name, description)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
