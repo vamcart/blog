@@ -34,22 +34,15 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Название блога</th>
+      <th scope="col">Текст статьи</th>
       <th scope="col">Описание</th>
+      <th scope="col">Статус</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>    
-{foreach $category.blogs as $blog}
-    <tr>
-      <th scope="row">{$blog.id}</th>
-      <td><a href="{route name='blog.view' id=$blog.id}">{$blog.name}</a></td>
-      <td>{$blog.description}</td>
-      <td>{if $blog.edited == 1}
-      <div class="text-success">Отредактировано администратором</div>
-      {/if}{if isAdmin}
-      <a href="{route name='blog.edit' id=$blog.id}">Редактировать</a>
-      {/if}</td>
-    </tr>
+{foreach $category.blogs as $blog_list}
+    {include file="blog_list_item.tpl"}
 {/foreach}
   </tbody>
 </table>
@@ -89,41 +82,7 @@
 </div>
             
 <h3>Список блогов</h3>
-<div class="table-responsive">
-<table class="table">
-  <thead class="table-light">
-    <tr>
-      <th scope="col">ID <a data-bs-toggle="tooltip" data-bs-title="Сортировка по id по возрастанию" href="/sort/id/order/asc"><i class="fas fa-chevron-up"></i></a> <a data-bs-toggle="tooltip" data-bs-title="Сортировка по id по убыванию" href="/sort/id/order/desc"><i class="fas fa-chevron-down"></i></a></th>
-      <th scope="col">Название <a data-bs-toggle="tooltip" data-bs-title="Сортировка по названию по возрастанию" href="/sort/name/order/asc"><i class="fas fa-chevron-up"></i></a> <a data-bs-toggle="tooltip" data-bs-title="Сортировка по названию по убыванию" href="/sort/name/order/desc"><i class="fas fa-chevron-down"></i></a></th>
-      <th scope="col">Текст <a data-bs-toggle="tooltip" data-bs-title="Сортировка по тексту по возрастанию" href="/sort/text/order/asc"><i class="fas fa-chevron-up"></i></a> <a data-bs-toggle="tooltip" data-bs-title="Сортировка по тексту по убыванию" href="/sort/text/order/desc"><i class="fas fa-chevron-down"></i></a></th>
-      <th scope="col">Описание <a data-bs-toggle="tooltip" data-bs-title="Сортировка по описанию по возрастанию" href="/sort/description/order/asc"><i class="fas fa-chevron-up"></i></a> <a data-bs-toggle="tooltip" data-bs-title="Сортировка по описанию по убыванию" href="/sort/description/order/desc"><i class="fas fa-chevron-down"></i></a></th>
-      <th scope="col">Статус <a data-bs-toggle="tooltip" data-bs-title="Сортировка по статусу по возрастанию" href="/sort/status/order/asc"><i class="fas fa-chevron-up"></i></a> <a data-bs-toggle="tooltip" data-bs-title="Сортировка по статусу по убыванию" href="/sort/status/order/desc"><i class="fas fa-chevron-down"></i></a></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-{foreach $blogs as $blog_list}
-    <tr>
-      <th scope="row">{$blog_list.id}</th>
-      <td><a href="{route name='blog.view' id=$blog_list.id}">{$blog_list.name}</a></td>
-      <td>{$blog_list.text}</td>
-      <td>{$blog_list.description}</td>
-      <td>{$blog_list.status}</td>
-      <td>{if $blog_list.edited == 1}
-      <div class="text-success">Отредактировано администратором</div>
-      {/if}{if isAdmin}
-      <a href="{route name='blog.edit' id=$blog_list.id}">Редактировать</a>
-      {/if}</td>
-    </tr>
-{/foreach}
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="6">{$pagination nofilter}</td>
-    </tr>
-  </tfoot>
-</table>
-</div>
+{include file="blog_list.tpl"}
 
             </div>
         </div>

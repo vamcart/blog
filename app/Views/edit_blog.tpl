@@ -51,11 +51,11 @@
                 </div>
                 <div class="form-group">
                     <label>URL картинки</label>
-                    <input type="text" name="image" value="{$blog->image}" required>
+                    <input type="text" name="image" value="{$blog->image}">
                 </div>
                 <div class="form-group">
                     <label>Количество просмотров</label>
-                    <input type="text" name="viewed" value="{$blog->viewed}" required>
+                    <input type="text" name="viewed" value="{$blog->viewed}">
                 </div>
                 <div class="form-group">
                     <label>Текст</label>

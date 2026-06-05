@@ -43,7 +43,7 @@
                 </div>
                     <div class="form-group">
                     <label>Описание</label>
-                    <textarea name="description">{$category->description}</textarea>
+                    <textarea name="description" required>{$category->description}</textarea>
                 </div>
                 <button class="btn primary" type="submit">Сохранить</button>
             </form>
